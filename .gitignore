@@ -1,0 +1,9 @@
+venv*
+.vscode
+.idea
+__pycache__
+.pytest
+*.egg*
+
+# project specific
+*.db
