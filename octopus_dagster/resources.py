@@ -1,4 +1,3 @@
-from typing import Optional
 from typing_extensions import override
 
 import pandas as pd
@@ -30,11 +29,6 @@ class SqliteInMemoryDatabase(ConfigurableResource):
 
     @property
     def engine(self) -> Engine:
-        # if self._engine is not None:
-        #     return self._engine
-        
-        # self._engine = create_engine("sqlite://", echo=True)
-        # create_all(self._engine)
         return self._engine
 
     @override
@@ -46,7 +40,6 @@ class SqliteInMemoryDatabase(ConfigurableResource):
 class OctopusResource(ConfigurableResource):
 
     database: ResourceDependency[SqliteInMemoryDatabase]
-    # _run_id: Optional[int] = None
     _run_id: int = PrivateAttr()
 
     def setup_for_execution(self, context: InitResourceContext) -> None:

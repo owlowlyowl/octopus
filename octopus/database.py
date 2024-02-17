@@ -24,7 +24,7 @@ class Run(Base):
         return f"Run(id={self.id!r}, name={self.name!r})"
 
 
-def persist_run(engine, dagster_id: str, name: str) -> int:
+def persist_run(engine: Engine, dagster_id: str, name: str) -> int:
     with Session(engine) as session:
 
         # does a run already exist for this dagster_id?
@@ -44,5 +44,5 @@ def persist_run(engine, dagster_id: str, name: str) -> int:
         return run_id
 
 
-def persist_result(dataframe: pd.DataFrame, table_name: str, engine) -> None:
+def persist_result(dataframe: pd.DataFrame, table_name: str, engine: Engine) -> None:
     dataframe.to_sql(table_name, engine, if_exists="append", index=False)

@@ -6,7 +6,11 @@ from octopus_dagster.resources import OctopusResource, SqliteInMemoryDatabase, S
 
 all_assets = load_assets_from_modules([assets])
 
-model_run_job = define_asset_job("model_run", selection=AssetSelection.groups("octopus"))
+model_run_job = define_asset_job(
+    "model_run",
+    selection=AssetSelection.groups("octopus"),
+    partitions_def=assets.partition,
+)
 
 defs = Definitions(
     assets=all_assets,
